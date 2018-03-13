@@ -74,6 +74,18 @@ int numHojas(const Arbin<T>& a, typename Arbin<T>::Iterador& it){
 /****************************************************************************/
 //Ejercicio 2
 
+template<typename T>
+Arbin<T> simetrico(const Arbin<T> &a){
+    return simetrico(a.getRaiz());
+}
+
+template<typename T>
+Arbin<T> simetrico(const Arbin<T> &a, typename Arbin<T>::Iterador& it){
+    Arbin<T> sim;
+    if(!it.arbolVacio())
+        sim(it.observar(), simetrico(a, a.subDer(it)), simetrico(a, a.subIzq(it)));
+    return sim;
+}
 
 /****************************************************************************/
 //Ejercicio 3

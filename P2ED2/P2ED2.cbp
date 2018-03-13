@@ -32,7 +32,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="abb.h" />
+		<Unit filename="abb.o" />
+		<Unit filename="arbin.h" />
+		<Unit filename="arbin.o" />
+		<Unit filename="excep_abb.h" />
+		<Unit filename="excep_arbin.h" />
+		<Unit filename="excepcion.h" />
+		<Unit filename="nodoB.h" />
+		<Unit filename="nodoB.o" />
+		<Unit filename="practica2.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
