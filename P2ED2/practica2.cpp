@@ -59,15 +59,15 @@ void anchura(const Arbin<T>& a) {
 template <typename T>
 
 int numHojas(const Arbin<T>& a){
-    return numHojas(a.getRaiz());
+    return numHojas(a, a.getRaiz());
 }
 
 template<typename T>
-int numHojas(const Arbin<T>& a, typename Arbin<T>::Iterador& it){
+int numHojas(const Arbin<T>& a,const typename Arbin<T>::Iterador& it){
     int nhojas;
-    if(a.esVacio()) nhojas=0;
-    else if(a.subIzq().arbolVacio() && a.subDer().arbolVacio()) nhojas=1;
-    else nhojas=numHojas(a.subIzq(), it)+numHojas(a.subDer(), it);
+    if(it.arbolVacio()) nhojas=0;
+    else if(a.subIzq(it).arbolVacio() && a.subDer(it).arbolVacio()) nhojas=1;
+    else nhojas=numHojas(a, a.subIzq(it))+numHojas(a, a.subDer(it));
     return nhojas;
 }
 
@@ -76,15 +76,17 @@ int numHojas(const Arbin<T>& a, typename Arbin<T>::Iterador& it){
 
 template<typename T>
 Arbin<T> simetrico(const Arbin<T> &a){
-    return simetrico(a.getRaiz());
+    return simetrico(a, a.getRaiz());
 }
 
 template<typename T>
-Arbin<T> simetrico(const Arbin<T> &a, typename Arbin<T>::Iterador& it){
-    Arbin<T> sim;
+Arbin<T> simetrico(const Arbin<T> &a, const typename Arbin<T>::Iterador& it){
     if(!it.arbolVacio())
-        sim(it.observar(), simetrico(a, a.subDer(it)), simetrico(a, a.subIzq(it)));
-    return sim;
+    {
+       return Arbin<T>(it.observar(), simetrico(a, a.subDer(it)), simetrico(a, a.subIzq(it)));
+    }
+        else return Arbin<T>();
+
 }
 
 /****************************************************************************/
@@ -147,7 +149,7 @@ int main(int argc, char *argv[])
     ABB<int> BB6, BB7;
 
 
- /*
+
     // NUMERO HOJAS //
     cout << "Num. hojas del arbol B: " << numHojas(B) << endl;
     cout << "Num. hojas del arbol E: " << numHojas(E) << endl << endl;
@@ -161,7 +163,7 @@ int main(int argc, char *argv[])
     cout << endl << endl;
 
 
-    // RECORRIDO EN ZIG-ZAG //
+   /* // RECORRIDO EN ZIG-ZAG //
     cout << "Recorrido en zigzag I de B:\n";
     recorridoZigzag(B, 'I');
     cout << endl;
