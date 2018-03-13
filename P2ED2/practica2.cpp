@@ -56,7 +56,20 @@ void anchura(const Arbin<T>& a) {
 /****************************** EJERCICIOS *********************************/
 /***************************************************************************/
 //Ejercicio 1
+template <typename T>
 
+int numHojas(const Arbin<T>& a){
+    return numHojas(a.getRaiz());
+}
+
+template<typename T>
+int numHojas(const Arbin<T>& a, typename Arbin<T>::Iterador& it){
+    int nhojas;
+    if(a.esVacio()) nhojas=0;
+    else if(a.subIzq().arbolVacio() && a.subDer().arbolVacio()) nhojas=1;
+    else nhojas=numHojas(a.subIzq(), it)+numHojas(a.subDer(), it);
+    return nhojas;
+}
 
 /****************************************************************************/
 //Ejercicio 2
