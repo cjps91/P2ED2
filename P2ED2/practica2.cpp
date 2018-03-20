@@ -120,25 +120,30 @@ void recorridoZigzag(const Arbin<T> &a, const typename Arbin<T>::Iterador& it, c
 
 template<typename T>
 void recorridoZigzag(const Arbin<T> &a, char sentido){
-
-   /* if(!a.esVacio()){
-        if(sentido=='D'){
-            cout<<a.subDer()).observar();
-            recorridoZigzag(a, 'I');
-        }
-        else if(sentido=='I'){
-            cout<<a.subIzq().observar();
-            recorridoZigzag(a, 'D');
-        }
-    } */
     recorridoZigzag(a, a.getRaiz(), sentido);
 }
 
 /******************************************************************************/
 //Ejercicio 4
 
+template <typename T>
+int numNodos(const Arbin<T>& a, const typename Arbin<T>::Iterador& r)
+{
+    if(r.arbolVacio())
+    {
+        return 0;
+    }
+    else
+    {
+        return 1 + numNodos(a, a.subIzq(r))+ numNodos(a, a.subDer(r));
+    }
+}
 
-
+template <typename T>
+int numNodos(const Arbin<T>& a)
+{
+    return numNodos(a, a.getRaiz());
+}
 /*****************************************************************************/
 //Ejercicio 5
 
