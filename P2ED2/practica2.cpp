@@ -3,6 +3,10 @@
 #include <queue>
 #include "arbin.h"
 #include "abb.h"
+#include "excep_abb.h"
+#include "excep_arbin.h"
+#include "excepcion.h"
+#include "nodoB.h"
 
 // Recorridos
 
@@ -92,6 +96,42 @@ Arbin<T> simetrico(const Arbin<T> &a, const typename Arbin<T>::Iterador& it){
 /****************************************************************************/
 //Ejercicio 3
 
+template<typename T>
+Arbin<T> recorridoZigzag(const Arbin<T> &a){
+    return recorridoZigzag(a.getRaiz());
+}
+
+template<typename T>
+void recorridoZigzag(const Arbin<T> &a, const typename Arbin<T>::Iterador& it, char sentido)
+{
+   if(!a.esVacio()){
+        if(sentido=='D'){
+            cout<<a.subDer(it).observar();
+            a.subDer(it).observar();
+            recorridoZigzag(a, a.subDer(it), 'I');
+        }
+        else if(sentido=='I'){
+            cout<<a.subIzq(it).observar();
+            recorridoZigzag(a,a.subIzq(it), 'D');
+        }
+    }
+}
+
+template<typename T>
+void recorridoZigzag(const Arbin<T> &a, char sentido){
+
+   /* if(!a.esVacio()){
+        if(sentido=='D'){
+            cout<<a.subDer()).observar();
+            recorridoZigzag(a, 'I');
+        }
+        else if(sentido=='I'){
+            cout<<a.subIzq().observar();
+            recorridoZigzag(a, 'D');
+        }
+    } */
+    recorridoZigzag(a, a.getRaiz(), sentido);
+}
 
 /******************************************************************************/
 //Ejercicio 4
@@ -163,7 +203,7 @@ int main(int argc, char *argv[])
     cout << endl << endl;
 
 
-   /* // RECORRIDO EN ZIG-ZAG //
+    // RECORRIDO EN ZIG-ZAG //
     cout << "Recorrido en zigzag I de B:\n";
     recorridoZigzag(B, 'I');
     cout << endl;
@@ -171,7 +211,7 @@ int main(int argc, char *argv[])
     recorridoZigzag(C, 'D');
     cout << endl << endl;
 
-
+/*
     // COMPENSADO //
     cout << "Esta A compensado?:";
     cout << (compensado(A) ? " SI" : " NO") << endl;
