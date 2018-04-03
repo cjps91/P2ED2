@@ -1,30 +1,34 @@
 # depslib dependency file v1.0
-1520930871 source:c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\practica2.cpp
+1521541693 source:c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\practica2.cpp
 	<iostream>
 	<cstdlib>
 	<queue>
 	"arbin.h"
 	"abb.h"
+	"excep_abb.h"
+	"excep_arbin.h"
+	"excepcion.h"
+	"nodoB.h"
 
-1520927475 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\arbin.h
+1520931075 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\arbin.h
 	"nodoB.h"
 	"excep_arbin.h"
 
-1520927475 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\nodob.h
+1520931075 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\nodob.h
 	<stdlib.h>
 
-1520927475 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\excep_arbin.h
+1520931075 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\excep_arbin.h
 	"excepcion.h"
 
-1520927475 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\excepcion.h
+1520931075 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\excepcion.h
 	<string>
 	<stdexcept>
 
-1520927475 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\abb.h
+1520931075 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\abb.h
 	"nodoB.h"
 	"excep_abb.h"
 	"arbin.h"
 
-1520927475 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\excep_abb.h
+1520931075 c:\users\icarl\desktop\proyectos\p2ed2\p2ed2\p2ed2\excep_abb.h
 	"excepcion.h"
 

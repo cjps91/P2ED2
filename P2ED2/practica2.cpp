@@ -127,26 +127,52 @@ void recorridoZigzag(const Arbin<T> &a, char sentido){
 //Ejercicio 4
 
 template <typename T>
+
 int numNodos(const Arbin<T>& a, const typename Arbin<T>::Iterador& r)
 {
     if(r.arbolVacio())
-    {
         return 0;
-    }
     else
     {
-        return 1 + numNodos(a, a.subIzq(r))+ numNodos(a, a.subDer(r));
+        return (numNodos(a, a.subIzq(r)) +1 + numNodos(a, a.subDer(r)));
     }
 }
 
 template <typename T>
-int numNodos(const Arbin<T>& a)
+bool compensado(const Arbin<T>& a, const typename Arbin<T>::Iterador& r)
 {
-    return numNodos(a, a.getRaiz());
+    if(r.arbolVacio())
+    {
+        return true;
+    }
+    else
+    {
+        return abs(numNodos(a, a.subIzq(r))- numNodos(a, a.subDer(r))) <= 1 && compensado(a, a.subIzq(r)) && compensado(a, a.subDer(r));
+    }
+}
+
+template <typename T>
+bool compensado(const Arbin<T>& a)
+{
+    return compensado(a, a.getRaiz());
 }
 /*****************************************************************************/
 //Ejercicio 5
+template <typename T>
+void palabras(const Arbin<T> &a){
+    palabras(a, a.getRaiz());
+}
 
+template <typename T>
+void palabras(const Arbin<T> &a, const typename Arbin<T>::Iterador& it){
+    string palabra;
+    if(it.arbolVacio()==false){
+        palabras(a, a.subIzq(it));
+        palabras(a, a.subDer(it));
+        palabra=palabra + it.observar();
+    }
+    else cout<<palabra;
+}
 
 /******************************************************************************/
 //Ejercicio 6
@@ -217,7 +243,7 @@ int main(int argc, char *argv[])
     recorridoZigzag(C, 'D');
     cout << endl << endl;
 
-/*
+
     // COMPENSADO //
     cout << "Esta A compensado?:";
     cout << (compensado(A) ? " SI" : " NO") << endl;
@@ -230,7 +256,7 @@ int main(int argc, char *argv[])
     cout << "PALABRAS DE B:\n";
     palabras(B);
     cout << endl;
-
+/*
     // SIGUIENTE MAYOR
     BB6.insertar(8); BB6.insertar(3); BB6.insertar(10); BB6.insertar(1); BB6.insertar(6);
     BB6.insertar(14); BB6.insertar(4); BB6.insertar(7); BB6.insertar(13);
