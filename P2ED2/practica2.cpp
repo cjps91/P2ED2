@@ -7,7 +7,7 @@
 #include "excep_arbin.h"
 #include "excepcion.h"
 #include "nodoB.h"
-
+#include "excep_nosig.h"
 // Recorridos
 
 template <typename T>
@@ -181,6 +181,25 @@ void palabras(const Arbin<T> &a, string s, const typename Arbin<T>::Iterador& it
 /******************************************************************************/
 //Ejercicio 6
 
+void siguienteMayor(const ABB<int>& a, const ABB<int>::Iterador & r, int x, int& sm)
+{
+    int eRaiz;
+    if(!r.arbolVacio())
+    {
+
+    }
+}
+
+int siguienteMayor(const ABB<int>& a, int x) throw (NoHaySiguienteMayor)
+{
+    int sm=0;
+    siguienteMayor(a, a.getRaiz(), x, sm);
+    if(sm==0)
+        throw (NoHaySiguienteMayor());
+    else
+        return sm;
+}
+
 
 /******************************************************************************/
 //Ejercicio 7
@@ -279,7 +298,7 @@ int main(int argc, char *argv[])
     cout << "PALABRAS DE B:\n";
     palabras(B);
     cout << endl;
-/*
+
     // SIGUIENTE MAYOR
     BB6.insertar(8); BB6.insertar(3); BB6.insertar(10); BB6.insertar(1); BB6.insertar(6);
     BB6.insertar(14); BB6.insertar(4); BB6.insertar(7); BB6.insertar(13);
@@ -294,7 +313,7 @@ int main(int argc, char *argv[])
     {
         cout << e.Mensaje() << endl << endl;
     }
-
+/*
     // POSICION INORDEN //
     BB7.insertar(5); BB7.insertar(1); BB7.insertar(3); BB7.insertar(8); BB7.insertar(6);
     cout << "Posicion Inorden en BB7 de 3: ";
