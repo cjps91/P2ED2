@@ -157,30 +157,52 @@ bool compensado(const Arbin<T>& a)
     return compensado(a, a.getRaiz());
 }
 /*****************************************************************************/
-//Ejercicio 5
+//Ejercicio 5 //No funciona
 template <typename T>
 void palabras(const Arbin<T> &a){
-    palabras(a, a.getRaiz());
+    palabras(a,"", a.getRaiz());
 }
 
 template <typename T>
-void palabras(const Arbin<T> &a, const typename Arbin<T>::Iterador& it){
-    string palabra;
-    if(it.arbolVacio()==false){
-        palabras(a, a.subIzq(it));
-        palabras(a, a.subDer(it));
-        palabra=palabra + it.observar();
+void palabras(const Arbin<T> &a, string s, const typename Arbin<T>::Iterador& it){
+    if(!it.arbolVacio()){
+       if(a.subIzq(it).arbolVacio() && a.subDer(it).arbolVacio())
+       {
+           cout << s << it.observar() << endl;
+       }
+       else{
+        string ns = s + it.observar();
+        palabras(a, ns, a.subIzq(it));
+        palabras(a, ns, a.subDer(it));
+       }
     }
-    else cout<<palabra;
 }
 
 /******************************************************************************/
 //Ejercicio 6
 
-
+
 /******************************************************************************/
 //Ejercicio 7
 
+template<typename T>
+ABB<T> posicion(const ABB<T> &a){
+    return posicion(a, a.getRaiz());
+}
+
+template<typename T>
+int posicion(const ABB<T> &a, typename ABB<T>::Iterador& it, const T& n){
+    int pos=0;
+    if(a.buscar(n)){
+        if(it.observar()<n){
+            pos+=posicion(a.subDer(it))+1;
+        }
+        else{
+            pos+=posicion(a.subIzq(it))-1;
+        }
+    }
+    return pos;
+}
 
 /******************************************************************************/
 //Ejercicio 8
@@ -253,6 +275,7 @@ int main(int argc, char *argv[])
     // PALABRAS DE UN ARBOL //
     cout << "PALABRAS DE A:\n";
     palabras(E);
+    cout <<"\n";
     cout << "PALABRAS DE B:\n";
     palabras(B);
     cout << endl;
