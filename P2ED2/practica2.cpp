@@ -225,7 +225,26 @@ int posicion(const ABB<T> &a, typename ABB<T>::Iterador& it, const T& n){
 
 /******************************************************************************/
 //Ejercicio 8
-
+bool haySumaCamino(const Arbin<int>& a, const Arbin<int>::Iterador& r, int suma)
+{
+    if (r.arbolVacio())
+        return false;
+    else
+    {
+        if(a.subIzq(r).arbolVacio()&&a.subDer(r).arbolVacio())
+        return(suma==r.observar());
+        else
+            return(haySumaCamino(a,a.subIzq(r),suma-r.observar()) || haySumaCamino(a,a.subDer(r),suma-r.observar()));
+    }
+}
+
+bool haySumaCamino(const Arbin<int>& a,int suma)
+{
+    if(a.esVacio())
+        return (suma==0);
+    else
+        return haySumaCamino(a,a.getRaiz(),suma);
+}
 
 /****************************************************************************/
 /****************************************************************************/
